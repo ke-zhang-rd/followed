@@ -6,4 +6,6 @@ Start by importing followed.
 
 .. code-block:: python
 
-    import followed
+    from followed import byfunc
+
+.. autofunction:: followed.byfunc
