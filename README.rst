@@ -17,6 +17,7 @@ This is a decorator toolbox, aka dectools.
 Install
 -------
 
-```sh
-pip install followed
-```
+.. code:: python
+
+  pip install followed
+
