@@ -1,18 +1,19 @@
-
+from functools import wraps
 from ._version import get_versions
 __version__ = get_versions()['version']
 del get_versions
 
 
-# byattr = lambda attr: lambda func: (lambda *args, **kwargs: getattr(func(*args, **kwargs), attr))
-# byfunc = lambda call: lambda func: (lambda *args, **kwargs: getattr(func(*args, **kwargs), call)())
-
 def byattr(attr):
     def dec(func):
+        @wraps(func)
         def newfunc(*args, **kwargs):
             return getattr(func(*args, **kwargs), attr)
         return newfunc
     return dec
+
+# Oneline approach:
+# byattr = lambda attr: lambda func: wraps(func)(lambda *args, **kwargs: getattr(func(*args, **kwargs), attr))
 
 
 def byfunc(call):
@@ -40,4 +41,12 @@ def byfunc(call):
     >>> greet()
     'HELLO WORLD'
     """
-    return lambda func: (lambda *args, **kwargs: getattr(func(*args, **kwargs), call)())
+    def dec(func):
+        @wraps(func)
+        def newfunc(*args, **kwargs):
+            return getattr(func(*args, **kwargs), call)()
+        return newfunc
+    return dec
+
+# Oneline approach:
+# byfunc = lambda call: lambda func: wraps(func)(lambda *args, **kwargs: getattr(func(*args, **kwargs), call)())
