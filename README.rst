@@ -14,7 +14,9 @@ This is a decorator toolbox, aka dectools.
 * Free software: 3-clause BSD license
 * Documentation: (COMING SOON!) https://ke-zhang-rd.github.io/followed.
 
-Features
---------
+Install
+-------
 
-* TODO
+```sh
+pip install followed
+```
